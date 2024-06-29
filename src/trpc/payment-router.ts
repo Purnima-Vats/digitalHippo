@@ -34,7 +34,7 @@ export const paymentRouter = router({
             collection: "orders",
             data: {
                 _isPaid: false,
-                products: filteredProducts.map((prod) => prod.id),
+                products : filteredProducts.map((prod) => prod.id) as string[],
                 user: user.id
             }
         })
@@ -43,7 +43,7 @@ export const paymentRouter = router({
 
         filteredProducts.forEach((product) => {
             line_items.push({
-                price: product.priceId!,
+                price: product.priceId! as string,
                 quantity: 1, 
                 adjustable_quantity: {
                     enabled: false
@@ -63,7 +63,7 @@ export const paymentRouter = router({
             const stripeSession = await stripe.checkout.sessions.create({
                 success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/thank-you?orderId=${order.id}`,
                 cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/cart`,
-                payment_method_types: ["card", "paypal"],
+                payment_method_types: ["card"],
                 mode: "payment",
                 metadata: {
                     userId: user.id,
