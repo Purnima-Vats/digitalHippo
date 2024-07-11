@@ -8,7 +8,12 @@ const nextConfig = {
                 pathname: "**",
                 port: "3001",
                 protocol: "http"
+            },
+            {
+                protocol: "https",
+                hostname: "digitalhippo-psi-seven.vercel.app",
             }
+
         ]
     }
 };
